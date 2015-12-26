@@ -2,19 +2,18 @@ package com.aw.flance2.ui.catalogue;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.aw.flance2.R;
 import com.aw.flance2.catalogue.CatalogueFactory;
 import com.aw.flance2.catalogue.Product;
-import com.aw.flance2.ui.catalogue.dummy.DummyContent;
-import com.aw.flance2.ui.catalogue.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
@@ -24,13 +23,17 @@ import java.util.List;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class ProductsFragment extends Fragment {
+public class ProductsFragment extends Fragment{
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    public void setMListener(OnListFragmentInteractionListener mListener) {
+        this.mListener = mListener;
+    }
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -41,13 +44,16 @@ public class ProductsFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ProductsFragment newInstance(int columnCount) {
+    public static ProductsFragment newInstance(int columnCount, OnListFragmentInteractionListener listener) {
         ProductsFragment fragment = new ProductsFragment();
+        fragment.mListener = listener;
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
         return fragment;
     }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,6 +87,7 @@ public class ProductsFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        Toast.makeText(context,"onAttach",Toast.LENGTH_LONG).show();
         if (context instanceof OnListFragmentInteractionListener) {
             mListener = (OnListFragmentInteractionListener) context;
         } else {

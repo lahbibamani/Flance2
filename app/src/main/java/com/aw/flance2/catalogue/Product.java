@@ -1,9 +1,11 @@
 package com.aw.flance2.catalogue;
 
+import java.io.Serializable;
+
 /**
  * Created by wadi-chemkhi on 12/24/15.
  */
-public class Product {
+public class Product implements Serializable {
     private String name;
     private String description;
     private double price;

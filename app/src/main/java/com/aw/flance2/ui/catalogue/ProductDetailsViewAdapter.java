@@ -8,23 +8,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.aw.flance2.R;
 import com.aw.flance2.catalogue.Product;
 import com.aw.flance2.ui.catalogue.ProductsFragment.OnListFragmentInteractionListener;
 
 import java.util.List;
-import com.aw.flance2.R;
 
 
-public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.ViewHolder> {
+public class ProductDetailsViewAdapter extends RecyclerView.Adapter<ProductDetailsViewAdapter.ViewHolder> {
 
 
-    private final List<Product> mValues;
-    private final OnListFragmentInteractionListener mListener;
+    private final Product mValues;
     private Context context;
 
-    public ProductViewAdapter(List<Product> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
-        mListener = listener;
+    public ProductDetailsViewAdapter(Product item) {
+        mValues = item;
     }
 
     @Override
@@ -37,26 +35,17 @@ public class ProductViewAdapter extends RecyclerView.Adapter<ProductViewAdapter.
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
+       /* holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getName());
         holder.mContentView.setText(mValues.get(position).getDescription());
         holder.mImg.setImageResource(R.drawable.ic_menu_gallery);
+*/
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
-                }
-            }
-        });
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return 4;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
